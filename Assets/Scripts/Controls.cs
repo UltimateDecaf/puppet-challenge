@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class Controls: MonoBehaviour
 {
     private InputActions inputActions;
     private bool isMoving;
