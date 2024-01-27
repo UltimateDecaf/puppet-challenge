@@ -2,21 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 /* Created by Lari Basangov
- * Based on Tarodev's Unity Tutorial: https://www.youtube.com/watch?v=4I0vonyqMi8
  * 
- * This class stores all states, stores state-related logic (referenced from other scripts(???),
- * and allows to update the state.
+ * This class is responsible for enabling and disabling the appropriate states,
+ * which is done in one method - UpdateGameState(newState);
+ * 
+ * Other scripts can call the said method to change the state.
  */
 public class StateManager : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameObject DrawState;
+    [SerializeField] private GameObject ReachState;
+
+
     public static StateManager Instance;
 
-    public GameState State;
+    public GameObject currentState;
 
-    public static event Action<GameState> OnGameStateChanged;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,34 +36,37 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    // It is good to start with DRAW state.
     private void Start()
     {
-        UpdateGameState(GameState.Draw);
+        currentState = DrawState;
+        UpdateGameState(currentState);
     }
 
-    public void UpdateGameState(GameState newState) 
+    private void Update()
     {
-        switch (newState)
+        // Just a random code to check things work
+        if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            case GameState.Draw:
-                //Logic for drawing
-                break;
-            case GameState.Reach: 
-                //Logic for reaching
-                break;
-            case GameState.Grab: 
-                //Logic for grabbing
-                break;
-            case GameState.Slap: 
-                //Logic for slapping
-                break;
-            case GameState.Finish: 
-                //Logic for finishing
-                break;
-            default: 
-                throw new ArgumentOutOfRangeException(nameof(newState));
+            UpdateGameState(ReachState);
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpdateGameState(DrawState);
         }
     }
 
-    public enum GameState { Draw, Reach, Grab, Slap, Finish }
+    // This method disables the old state, and then enables the new state.
+    public void UpdateGameState(GameObject newState) 
+    {
+       if(currentState != null)
+        {
+            currentState.SetActive(false);
+        }
+
+       currentState = newState;
+        currentState.SetActive(true);
+
+    }
 }
