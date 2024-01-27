@@ -154,7 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawState: {fileID: 2065657975}
   ReachState: {fileID: 2048756017}
-  currentState: {fileID: 2048756017}
+  GrabState: {fileID: 0}
+  SlapState: {fileID: 0}
+  WinState: {fileID: 0}
 --- !u!4 &71710898
 Transform:
   m_ObjectHideFlags: 0
@@ -942,12 +944,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935555338}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.58, y: 0.77, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.53, y: -3.04, z: -5}
+  m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1674088444}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &935555340
 BoxCollider:
@@ -1382,7 +1384,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1433173663}
-  - {fileID: 935555339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1674088445
@@ -1397,13 +1398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63cff9000fb9b546b4958b0052c8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lr: {fileID: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
-  hand: {fileID: 0}
-  handOffset: {x: 0, y: 0, z: 0}
-  pointThreshold: 1
 --- !u!114 &1674088446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,6 +1717,7 @@ SceneRoots:
   - {fileID: 2053911936}
   - {fileID: 2122619909}
   - {fileID: 609984563}
+  - {fileID: 935555339}
   - {fileID: 1674088444}
   - {fileID: 71710898}
   - {fileID: 456591654}

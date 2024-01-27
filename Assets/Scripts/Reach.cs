@@ -15,13 +15,15 @@ public class Reach : BaseState
     public float fastSpeed;
     
     [Header("Line")]
-    public LineRenderer line;
+    private LineRenderer line;
     
     // Start is called before the first frame update
    private void OnEnable()
     {
         Debug.Log("Reach started");
         hand.SetActive(true);
+
+        line = GameObject.FindGameObjectWithTag("Line").GetComponent<LineRenderer>();
         line.enabled = false;
         GenerateSpline(line);
     }
@@ -82,7 +84,6 @@ public class Reach : BaseState
         }
         extruder.Range = new Vector2(0, 1);
     }
-    
     
     private void OnDisable()
     {
