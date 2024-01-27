@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 456591655}
   m_Layer: 0
   m_Name: TestLine
-  m_TagString: Untagged
+  m_TagString: Line
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -929,6 +929,7 @@ GameObject:
   - component: {fileID: 935555342}
   - component: {fileID: 935555341}
   - component: {fileID: 935555340}
+  - component: {fileID: 935555343}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -1022,6 +1023,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935555338}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &935555343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935555338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_LoopMode: 0
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 10
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1 &1239481469
 GameObject:
   m_ObjectHideFlags: 3
@@ -1475,10 +1499,14 @@ MonoBehaviour:
   hand: {fileID: 935555338}
   moveSpeed: 2
   fastSpeed: 4
-  line: {fileID: 456591653}
   splinePrefab: {fileID: 1120618716288161050, guid: 8b4da52b71811f944acf4336ea0ae95e, type: 3}
   mode: 0
   duration: 2
+  extrudeBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  vertices: []
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2053911933
 GameObject:
   m_ObjectHideFlags: 0
