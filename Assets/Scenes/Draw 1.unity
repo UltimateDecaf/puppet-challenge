@@ -367,7 +367,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &614079781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,6 +1054,9 @@ MonoBehaviour:
   handOffset: {x: -7, y: -1, z: 0}
   pointThreshold: 1
   mousePos: {x: 0, y: 0, z: 0}
+  imageToMove: {fileID: 1655880486}
+  canvas: {fileID: 614079783}
+  cursorOffset: {x: 690, y: 410}
 --- !u!1 &1643276189
 GameObject:
   m_ObjectHideFlags: 0
