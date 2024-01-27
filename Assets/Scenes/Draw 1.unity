@@ -868,6 +868,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b6f322d0f06264ba918310e5ff1f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 1085442761}
+  lm:
+    serializedVersion: 2
+    m_Bits: 64
+  hand: {fileID: 1085442755}
+  handOffset: {x: -7, y: -1, z: 0}
+  pointThreshold: 1
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &1643276189
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,12 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63cff9000fb9b546b4958b0052c8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lr: {fileID: 1085442761}
-  lm:
-    serializedVersion: 2
-    m_Bits: 64
-  hand: {fileID: 1085442755}
-  handOffset: {x: -7, y: -1, z: 0}
 --- !u!114 &1643276191
 MonoBehaviour:
   m_ObjectHideFlags: 0
