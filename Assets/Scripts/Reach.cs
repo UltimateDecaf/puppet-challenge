@@ -48,7 +48,7 @@ public class Reach : BaseState
        line.GetPositions(linePoints);
 
        // Instance a Spline Container
-       GameObject prefab = Instantiate(splinePrefab, line.transform.position, Quaternion.Euler(0,90,0));
+       GameObject prefab = Instantiate(splinePrefab, line.transform.position, Quaternion.identity); 
        SplineContainer splineContainer = prefab.GetComponent<SplineContainer>();
               
        // Convert Line Renderer points into BezierKnots

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4481247, g: 0.49814022, b: 0.5755432, a: 1}
+  m_IndirectSpecularColor: {r: 0.44812518, g: 0.4981408, b: 0.57554394, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 456591655}
   m_Layer: 0
   m_Name: TestLine
-  m_TagString: Untagged
+  m_TagString: Line
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1475,7 +1475,6 @@ MonoBehaviour:
   hand: {fileID: 935555338}
   moveSpeed: 2
   fastSpeed: 4
-  line: {fileID: 456591653}
   splinePrefab: {fileID: 1120618716288161050, guid: 8b4da52b71811f944acf4336ea0ae95e, type: 3}
   mode: 0
   duration: 2

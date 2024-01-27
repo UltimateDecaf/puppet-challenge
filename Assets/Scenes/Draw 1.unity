@@ -152,7 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584a11126f137e0498e2f7cc7a664ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 679270612}
+  hand: {fileID: 0}
+  moveSpeed: 0
+  fastSpeed: 0
+  line: {fileID: 0}
+  splinePrefab: {fileID: 0}
+  mode: 0
+  duration: 0
 --- !u!4 &68717
 Transform:
   m_ObjectHideFlags: 0
@@ -202,7 +208,6 @@ MonoBehaviour:
   GrabState: {fileID: 0}
   SlapState: {fileID: 0}
   WinState: {fileID: 0}
-  currentState: {fileID: 0}
 --- !u!4 &204443528
 Transform:
   m_ObjectHideFlags: 0
@@ -345,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &614079780
 MonoBehaviour:
   m_ObjectHideFlags: 0
