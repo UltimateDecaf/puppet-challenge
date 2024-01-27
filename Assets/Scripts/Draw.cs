@@ -41,6 +41,7 @@ public class Draw : BaseState
                 mousePos = mp;
             }
 
+            //Adds the new point to the line if the mouse has moved a certain distane
             float distance = Vector3.Distance(lr.GetPosition(lr.positionCount - 1), mousePos);
             if (distance >= pointThreshold)
             {
