@@ -17,6 +17,9 @@ public class StateManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject DrawState;
     [SerializeField] private GameObject ReachState;
+    [SerializeField] private GameObject GrabState;
+    [SerializeField] private GameObject SlapState;
+    [SerializeField] private GameObject WinState;
 
 
     public static StateManager Instance;
