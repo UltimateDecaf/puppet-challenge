@@ -15,16 +15,16 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject DrawState;
-    [SerializeField] private GameObject ReachState;
-    [SerializeField] private GameObject GrabState;
-    [SerializeField] private GameObject SlapState;
-    [SerializeField] private GameObject WinState;
+    [SerializeField] public GameObject DrawState;
+    [SerializeField] public GameObject ReachState;
+    [SerializeField] public GameObject GrabState;
+    [SerializeField] public GameObject SlapState;
+    [SerializeField] public GameObject WinState;
 
 
     public static StateManager Instance;
 
-    public GameObject currentState;
+    private GameObject currentState;
 
 
     private void Awake()
