@@ -17,7 +17,7 @@ public class Controls: MonoBehaviour
     [SerializeField] private InputActions inputActions; //The object that defines what inputs do what
 
     //Draw Phase Variables
-    private bool isMoving; //Shows whether the player is holding the left mouse button
+   // private bool isMoving; //Shows whether the player is holding the left mouse button
     [SerializeField] private LineRenderer lr; //The LineRender to draw the line the player's mouse follows in Draw phase
     [SerializeField] private LayerMask lm; //The layer the mouse collider is on
     [SerializeField] private GameObject hand; //The hand game object to draw the line from
@@ -25,6 +25,7 @@ public class Controls: MonoBehaviour
     [SerializeField] private float pointThreshold = 1f; //The minimum distance the mouse needs to be away from the last point on the line
     #endregion
 
+    public static Controls Instance;
     //Values that are sent to the state scripts
     public bool isMoving { get; private set; } //Shows whether the player is holding the left mouse button in DRAW state
     public bool buttonPressed { get; private set; } // Shows whether the player has pressed the button in the GRAB state
