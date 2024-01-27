@@ -1460,6 +1460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1539335096}
+  - component: {fileID: 1539335097}
   m_Layer: 0
   m_Name: Reach
   m_TagString: Untagged
@@ -1482,6 +1483,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1149459564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1539335097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539335095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584a11126f137e0498e2f7cc7a664ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 0}
 --- !u!1 &1540872686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1760442211}
+  - component: {fileID: 1760442212}
   m_Layer: 0
   m_Name: Draw
   m_TagString: Untagged
@@ -1754,6 +1769,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1149459564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1760442212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760442210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b6f322d0f06264ba918310e5ff1f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lr: {fileID: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
+  hand: {fileID: 0}
+  handOffset: {x: 0, y: 0, z: 0}
+  pointThreshold: 0
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &1769604047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,8 +2164,8 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
+    m_Type: 0
+    m_Resolution: 1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
