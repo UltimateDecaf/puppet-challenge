@@ -4,8 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 //TODO: Don't forget to add yourself in the credit!
-/* Created by Lari Basangov,..
- * 
+/* Created by Jan Willem
  * This is the implementation for the DRAW state
  * It READS values from Controls, and implements the game logic for DRAW phase.
  */
