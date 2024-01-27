@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO: Don't forget to add yourself in the credit!
 /* Created by Jan Willem
@@ -16,21 +17,22 @@ public class Draw : BaseState
     [SerializeField] private Vector3 handOffset; //The offset of the hand game object from the world space
     [SerializeField] private float pointThreshold; //The minimum distance the mouse needs to be away from the last point on the line
     [SerializeField] private Vector3 mousePos = new Vector3(0, 0, 0); //The worldspace coordinates of the mouse
-    //[SerializeField] private RectTransform cursor;
+    [SerializeField] private RectTransform imageToMove;
+    [SerializeField] private RectTransform canvas;
+    [SerializeField] private Vector2 cursorOffset = new Vector2(1280/2, 720/2);
 
-    /*
+    
     private void OnEnable()
     {
-        cursor.gameObject.SetActive(true);
+        canvas.gameObject.SetActive(true);
         NewMousePos();
-        cursor.position = mousePos;
     }
 
     private void OnDisable()
     {
-        cursor.gameObject.SetActive(false); 
+        canvas.gameObject.SetActive(false); 
     }
-    */
+    
 
     protected override void Start()
     {
@@ -41,7 +43,9 @@ public class Draw : BaseState
     protected override void Update()
     {
         NewMousePos();
-        //cursor.position = mousePos;
+        //Debug.Log(Camera.main.WorldToScreenPoint(mousePos));
+        //cursor.position = Camera.main.WorldToScreenPoint(mousePos) - cursorOffset;
+        MoveObject();
         if (Controls.Instance.isMoving) //We are drawing
         {
             //NewMousePos(); //Updates the mouse position to the new one
@@ -70,5 +74,13 @@ public class Draw : BaseState
             //Return mouse position in worldspace
             mousePos = mp;
         }
+    }
+
+    private void MoveObject()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        mousePosition += cursorOffset;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Camera.main.WorldToScreenPoint(mousePosition), Camera.main, out mousePosition);
+        imageToMove.position = mousePosition;
     }
 }
