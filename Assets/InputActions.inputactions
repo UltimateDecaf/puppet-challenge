@@ -22,22 +22,13 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Grab",
-                    "type": "Button",
-                    "id": "ad6c4360-d370-41ad-97fc-b39fe4c9f6d8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "b9f64465-41b6-474a-9aeb-e02e24f36fdc",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -53,17 +44,6 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Drag",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ce734ec-9709-45cc-962e-5ee389137034",
-                    "path": "<Mouse>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
