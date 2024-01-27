@@ -9,7 +9,6 @@ public class Reach : BaseState
    private void OnEnable()
     {
         Debug.Log("Reach started");
-        cube.SetActive(true);
     }
 
     // Update is called once per frame
@@ -18,8 +17,5 @@ public class Reach : BaseState
         Debug.Log("Reach updates");
     }
 
-    private void OnDisable()
-    {
-        cube.SetActive(false);
-    }
+   
 }
