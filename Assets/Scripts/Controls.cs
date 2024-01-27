@@ -27,7 +27,7 @@ public class Controls: MonoBehaviour
 
     public static Controls Instance;
     //Values that are sent to the state scripts
-    public bool isMoving { get; private set; } //Shows whether the player is holding the left mouse button in DRAW state
+    public bool isMoving { get; private set; } // Shows whether the player is holding the left mouse button in DRAW state
     public bool buttonPressed { get; private set; } // Shows whether the player has pressed the button in the GRAB state
     public Vector2 movementPoint { get; private set; } // value of the current position of the mouse
     private void Awake()
@@ -106,5 +106,13 @@ public class Controls: MonoBehaviour
         
          buttonPressed = context.ReadValueAsButton();
         
+    }
+
+    public bool isAccelerating { get; private set; }
+
+    private void OnReach(InputValue value)
+    {
+        bool rightArrow = value.Get<bool>();
+        isAccelerating = rightArrow;
     }
 }

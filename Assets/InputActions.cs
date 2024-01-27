@@ -53,6 +53,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reach"",
+                    ""type"": ""Button"",
+                    ""id"": ""68acce8f-77c5-4296-b89a-43f4b8f9a80b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68454ce9-6085-44e6-a037-2d61049bc7b0"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reach"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -116,6 +136,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
         m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
+        m_Player_Reach = m_Player.FindAction("Reach", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -180,6 +201,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Start;
     private readonly InputAction m_Player_Drag;
     private readonly InputAction m_Player_Grab;
+    private readonly InputAction m_Player_Reach;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -187,6 +209,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputAction @Drag => m_Wrapper.m_Player_Drag;
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
+        public InputAction @Reach => m_Wrapper.m_Player_Reach;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -205,6 +228,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Grab.started += instance.OnGrab;
             @Grab.performed += instance.OnGrab;
             @Grab.canceled += instance.OnGrab;
+            @Reach.started += instance.OnReach;
+            @Reach.performed += instance.OnReach;
+            @Reach.canceled += instance.OnReach;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -218,6 +244,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Grab.started -= instance.OnGrab;
             @Grab.performed -= instance.OnGrab;
             @Grab.canceled -= instance.OnGrab;
+            @Reach.started -= instance.OnReach;
+            @Reach.performed -= instance.OnReach;
+            @Reach.canceled -= instance.OnReach;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -249,5 +278,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnStart(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
+        void OnReach(InputAction.CallbackContext context);
     }
 }
