@@ -66,7 +66,7 @@ public class StateManager : MonoBehaviour
         }
 
        currentState = newState;
-        currentState.SetActive(true);
+       currentState.SetActive(true);
 
     }
 }
