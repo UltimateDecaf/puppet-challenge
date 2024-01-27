@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform handPos; //The position info of the hand Game Object
     [SerializeField] private float speed = 1f; //The speed at which the hand can move
     [SerializeField] private List<Vector3> trails = new List<Vector3>(); //Stores the vectors used to move the hand, so acts as trail that can be retraced back later
-    [SerializeField] private float retractSpeed = -2f; //The speed at which to retract the hand
+    [SerializeField] private float retractSpeed = -1f; //The speed at which to retract the hand
 
     //Pending variables
     [SerializeField] private bool movementLock = false; //Could be used to toggle whether the player can input movement
