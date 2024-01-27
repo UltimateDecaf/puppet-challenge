@@ -11,11 +11,18 @@ using UnityEngine.UI;
  */
 public class Draw : BaseState
 {
+    [Header("Line")]
     [SerializeField] private LineRenderer lr; //The LineRender to draw the line the player's mouse follows in Draw phase
     [SerializeField] private LayerMask lm; //The layer the mouse collider is on
     [SerializeField] private GameObject hand; //The hand game object to draw the line from
+    [SerializeField] private Transform handPos; //The hand game object to draw the line from
     [SerializeField] private Vector3 handOffset; //The offset of the hand game object from the world space
     [SerializeField] private float pointThreshold; //The minimum distance the mouse needs to be away from the last point on the line
+    [SerializeField] private GameObject lineColliderGO; //Game Object for the line collider
+    [SerializeField] private Collider lineCollider; //The collider for the line
+    [SerializeField] private Vector3 cakePos;
+
+    [Header("Cursor")]
     [SerializeField] private Vector3 mousePos = new Vector3(0, 0, 0); //The worldspace coordinates of the mouse
     [SerializeField] private RectTransform imageToMove;
     [SerializeField] private RectTransform canvas;
@@ -26,6 +33,7 @@ public class Draw : BaseState
     {
         canvas.gameObject.SetActive(true);
         NewMousePos();
+        handPos = hand.GetComponent<Transform>();
     }
 
     private void OnDisable()
@@ -37,7 +45,7 @@ public class Draw : BaseState
     protected override void Start()
     {
         Debug.Log("Draw Started");
-        lr.SetPosition(0, hand.transform.position - handOffset); //Set the first point's position to the current game objects position
+        lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
     }
 
     protected override void Update()
@@ -49,13 +57,20 @@ public class Draw : BaseState
         if (Controls.Instance.isMoving) //We are drawing
         {
             //NewMousePos(); //Updates the mouse position to the new one
-
+            MoveObject();
             //Adds the new point to the line if the mouse has moved a certain distane
             float distance = Vector3.Distance(lr.GetPosition(lr.positionCount - 1), mousePos);
             if (distance >= pointThreshold)
             {
                 lr.positionCount++;
                 lr.SetPosition(lr.positionCount - 1, mousePos);
+                Vector3 pointPos = lr.GetPosition(lr.positionCount - 1);
+                float cakeDist = Vector3.Distance(pointPos, cakePos);
+                if (cakeDist <= 1f)
+                {
+                    Debug.Log("self implement collision");
+                }
+
             }
         }
     }
@@ -69,11 +84,12 @@ public class Draw : BaseState
         {
             mp = raycastHit.point;
             mp.z = 0f; //Set the z coordinate to 0
-            mp -= handOffset; //Gets the worldspace coordinate of the point taking the hand's offset into account
+            //mp -= handOffset; //Gets the worldspace coordinate of the point taking the hand's offset into account
 
             //Return mouse position in worldspace
             mousePos = mp;
         }
+        MoveObject();
     }
 
     private void MoveObject()
@@ -82,5 +98,10 @@ public class Draw : BaseState
         mousePosition += cursorOffset;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Camera.main.WorldToScreenPoint(mousePosition), Camera.main, out mousePosition);
         imageToMove.position = mousePosition;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collided");
     }
 }
