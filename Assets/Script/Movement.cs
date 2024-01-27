@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    #region Variables
     public GameObject hand; //The hand Game Object
     [SerializeField] private Transform handPos; //The position info of the hand Game Object
     [SerializeField] private float speed = 1f; //The speed at which the hand can move
@@ -12,10 +13,12 @@ public class Movement : MonoBehaviour
 
     //Pending variables
     [SerializeField] private bool movementLock = false; //Could be used to toggle whether the player can input movement
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        handPos = hand.transform; //Get the transform component of the hand object
+        handPos = hand.transform; //Get the Transform component of the hand object
     }
 
     // Update is called once per frame
