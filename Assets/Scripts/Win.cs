@@ -9,6 +9,7 @@ public class Win : BaseState
     [SerializeField] private GameObject winCanvas;
     private void OnEnable() 
     {
+        AudioManager.Instance.CrunchySaysSuccess();
         winCanvas.SetActive(true);
         AudioManager.Instance.CrunchySaysSuccess();
         cameraSwitcher.ActivateSlapWinCamera();
