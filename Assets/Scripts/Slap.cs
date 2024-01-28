@@ -68,9 +68,10 @@ public class Slap : BaseState
          yield return null;
       }
       OnSlap?.Invoke();
+      AudioManager.Instance.PlaySlapSound();
       neutralModel.SetActive(false);
       angryModel.SetActive(true);
-
+      AudioManager.Instance.CrunchySaysSlapped();
       yield return new WaitForSeconds(4f);
       StateManager.Instance.UpdateGameState(StateManager.Instance.DrawState);
       ResetHandPosition();

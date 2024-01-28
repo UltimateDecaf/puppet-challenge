@@ -46,6 +46,7 @@ public class Draw : BaseState
         Vector2 hotspot = new Vector2(0, pencil.height);
         Cursor.SetCursor(pencil, hotspot, CursorMode.Auto);
         AudioManager.Instance.PlayDrawingSound();
+        handOffset = handPos.position;
     }
 
     private void OnDisable()
