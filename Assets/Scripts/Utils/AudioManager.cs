@@ -39,5 +39,8 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(drawingSound);
     }
 
-
+    public void StopSound()
+    {
+        audioSource.Stop();
+    }
 }

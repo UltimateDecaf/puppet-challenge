@@ -651,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 370786141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -3.14, z: 0}
+  m_LocalPosition: {x: -6.16, y: -3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2760,7 +2760,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.7
   m_Center: {x: 0.00000011920929, y: -0.0000011920929, z: 0.1677162}
 --- !u!114 &1429419434
 MonoBehaviour:
@@ -3724,8 +3724,7 @@ MonoBehaviour:
     m_Bits: 64
   handPos: {fileID: 370786142}
   handOffset: {x: -5.11, y: -3.14, z: 0}
-  pointThreshold: 0.5
-  foodPos: {x: 6.76, y: 3.22, z: 0}
+  pointThreshold: 0.35
   canDraw: 0
   drawing: 0
   mousePos: {x: 0, y: 0, z: 0}
@@ -3733,6 +3732,9 @@ MonoBehaviour:
   pencil: {fileID: 2800000, guid: ee80099596b11954ebf9bdd9cd55eaa4, type: 3}
   puppet: {fileID: 1267467579}
   food: {fileID: 1429419434}
+  isScribbling: 0
+  isMusic: 0
+  scribbleDur: 9
 --- !u!1 &1769604047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,7 +3961,7 @@ Transform:
   m_GameObject: {fileID: 1816241778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.83, y: -2.5699997, z: -4.49}
+  m_LocalPosition: {x: 0.21999979, y: 0, z: -12.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
