@@ -32,7 +32,7 @@ public class Grab : BaseState
 
     private void OnEnable()
     {
-        cameraSwitcher.ActivateGrabCamera();
+        //cameraSwitcher.ActivateGrabCamera();
         GrabCanvas.SetActive(true);
     }
 

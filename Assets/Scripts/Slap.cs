@@ -16,7 +16,7 @@ public class Slap : BaseState
    public GameObject angryModel;
    public GameObject neutralModel;
 
-   public GameObject slapHand;
+   public SplineAnimate slapHand;
    public GameObject reachHand;
    private Vector3 startHandPos;
    private Quaternion startHandRot;
@@ -30,14 +30,13 @@ public class Slap : BaseState
 
    private void OnEnable()
    {
-      startHandPos = reachHand.transform.position;
-      startHandRot = reachHand.transform.rotation;
-      
-      targetPosition = slapHand.transform.position;
-      targetRotation = slapHand.transform.localRotation;
-      
+      reachHand.SetActive(false);
+      slapHand.gameObject.SetActive(true);
+
       // Slap Sequence
       StartCoroutine("SlapSequence");
+      slapHand.Play();
+      slapArm.gameObject.SetActive(true);
    }
 
    protected override void Update()
@@ -52,13 +51,6 @@ public class Slap : BaseState
 
       while (elapsed < duration)
       {
-         // Lerp Position
-         reachHand.transform.position = Vector3.Lerp(reachHand.transform.position, targetPosition, elapsed / duration);
-         
-         // Lerp Rotation - This is broken but is way funnier
-         Vector3 rot = Vector3.Lerp(reachHand.transform.rotation.eulerAngles, targetRotation.eulerAngles, elapsed / duration);
-         reachHand.transform.rotation = quaternion.Euler(rot.x, rot.y, rot.y);
-         
          // Extrude Slap Arm
          slapArm.Rebuild();
          armValue = Mathf.Lerp(0, 1, elapsed / duration);
@@ -67,24 +59,19 @@ public class Slap : BaseState
          elapsed += Time.deltaTime;
          yield return null;
       }
-      OnSlap?.Invoke();
       neutralModel.SetActive(false);
       angryModel.SetActive(true);
 
       yield return new WaitForSeconds(4f);
       StateManager.Instance.UpdateGameState(StateManager.Instance.DrawState);
-      ResetHandPosition();
       cameraSwitcher.ActivateDrawReachCamera();
-   }
-
-   void ResetHandPosition()
-   {
-      reachHand.transform.position = startHandPos;
-      reachHand.transform.rotation = startHandRot;
    }
 
    private void OnDisable()
    {
+      reachHand.SetActive(true);
+      slapArm.gameObject.SetActive(false);
+      slapHand.gameObject.SetActive(false);
       angryModel.SetActive(false);
       neutralModel.SetActive(true);
       slapArm.gameObject.SetActive(false);
