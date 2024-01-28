@@ -578,8 +578,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: c17dd05f4200f1d48a8e0847035fc591, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -679,6 +679,7 @@ MonoBehaviour:
   audioSource: {fileID: 641951500}
   testMusic: {fileID: 8300000, guid: da0dc42ada9f6494db70c79bda71e264, type: 3}
   testSuccessMusic: {fileID: 8300000, guid: 479f0e8a9b341dc428ad49b81cfcfe2d, type: 3}
+  drawingSound: {fileID: 8300000, guid: 52075fd610345ed47801351cbe1744d0, type: 3}
 --- !u!4 &641951502
 Transform:
   m_ObjectHideFlags: 0

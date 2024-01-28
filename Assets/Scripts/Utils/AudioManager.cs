@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip testMusic;
     [SerializeField] private AudioClip testSuccessMusic;
+    [SerializeField] private AudioClip drawingSound;
 
     private void Start()
     {
@@ -38,6 +39,13 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(testMusic);
     }
    
+    public void PlayDrawingSound()
+    {
+        audioSource.PlayOneShot(drawingSound);
+    }
 
+    public void PlayBackgroundMusic()
+    {
+    }
 
 }
