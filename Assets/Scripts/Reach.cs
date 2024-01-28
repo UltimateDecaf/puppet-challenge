@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,13 +33,20 @@ public class Reach : BaseState
     protected override void Update()
     {
         // Move the hand at normal speed along the spline
-       
+        if (vertices.Length != 0)
+        {
+            //UpdateHandTransform(splineInstance.GetComponent<SplineContainer>().Spline.Knots.ToList());
+        }
+        
     }
 
     [Header("Spline")]
     public GameObject splinePrefab;
     public TangentMode mode;
     public float duration;
+    public Bounds extrudeBounds;
+    public Vector3[] vertices;
+    public Vector3 targetPosition;
     
     private void GenerateSpline(LineRenderer line)
     {
@@ -50,7 +58,7 @@ public class Reach : BaseState
        // Instance a Spline Container
        GameObject prefab = Instantiate(splinePrefab, line.transform.position, Quaternion.identity); 
        SplineContainer splineContainer = prefab.GetComponent<SplineContainer>();
-              
+
        // Convert Line Renderer points into BezierKnots
        List<BezierKnot> lineKnots = new List<BezierKnot>();
        
@@ -58,12 +66,15 @@ public class Reach : BaseState
        {
            lineKnots.Add(new BezierKnot(point));
        }
-       
        splineContainer.Spline.Knots = lineKnots;
        splineContainer.Spline.SetTangentMode(mode);
-
+       
+       //Extrude Mesh
        SplineExtrude extruder = prefab.GetComponent<SplineExtrude>();
        StartCoroutine(ExtrudeArm(extruder));
+       
+       //Animate Hand Motion
+       AnimateHand(splineContainer);
     }
 
     IEnumerator ExtrudeArm(SplineExtrude extruder)
@@ -84,9 +95,19 @@ public class Reach : BaseState
         }
         extruder.Range = new Vector2(0, 1);
     }
+
+    public void AnimateHand(SplineContainer container)
+    {
+        SplineAnimate anim = hand.GetComponent<SplineAnimate>();
+        anim.Container = container;
+        anim.Duration = duration;
+        anim.Play();
+    }
     
+
     private void OnDisable()
     {
         hand.SetActive(false);
     }
+    
 }
