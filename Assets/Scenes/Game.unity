@@ -1944,7 +1944,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawState: {fileID: 1760442210}
   ReachState: {fileID: 1539335095}
-  GrabState: {fileID: 785925503}
   SlapState: {fileID: 1058429016}
   WinState: {fileID: 1540872686}
 --- !u!4 &1149459564
@@ -2135,8 +2134,8 @@ GameObject:
   - component: {fileID: 1267467574}
   - component: {fileID: 1267467573}
   - component: {fileID: 1267467572}
-  - component: {fileID: 1267467577}
   - component: {fileID: 1267467578}
+  - component: {fileID: 1267467579}
   m_Layer: 0
   m_Name: Puppet
   m_TagString: Untagged
@@ -2204,6 +2203,43 @@ Transform:
   - {fileID: 370786142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1267467578
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267467571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1267467579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267467571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0090176a565e9443bed2d990851846c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enter: 0
+  exit: 0
 --- !u!1 &1298700055
 GameObject:
   m_ObjectHideFlags: 3
@@ -2254,39 +2290,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267467571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0090176a565e9443bed2d990851846c, type: 3}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1315982909}
+  m_Layer: 0
   m_Name: 
-  m_EditorClassIdentifier: 
-  enter: 0
-  exit: 0
---- !u!136 &1267467578
-CapsuleCollider:
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1315982909
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267467571}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_GameObject: {fileID: 1315982908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.91, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1267467574}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1318954283
 GameObject:
@@ -2456,6 +2483,7 @@ GameObject:
   - component: {fileID: 1429419432}
   - component: {fileID: 1429419431}
   - component: {fileID: 1429419433}
+  - component: {fileID: 1429419434}
   m_Layer: 0
   m_Name: Cake
   m_TagString: Cake
@@ -2549,6 +2577,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0.00000011920929, y: -0.0000011920929, z: 0.1677162}
+--- !u!114 &1429419434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429419428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0090176a565e9443bed2d990851846c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enter: 0
+  exit: 0
 --- !u!1 &1436722245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,7 +2929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawReachCamera: {fileID: 947424561}
-  GrabCamera: {fileID: 831904236}
   SlapWinCamera: {fileID: 184769432}
 --- !u!4 &1653800693
 Transform:
@@ -3277,13 +3318,10 @@ MonoBehaviour:
   canDraw: 0
   drawing: 0
   mousePos: {x: 0, y: 0, z: 0}
-  imageToMove: {fileID: 0}
-  canvas: {fileID: 0}
-  cursorOffset: {x: 690, y: 410}
   onFood: 0
   pencil: {fileID: 2800000, guid: ee80099596b11954ebf9bdd9cd55eaa4, type: 3}
-  puppet: {fileID: 1267467577}
-  food: {fileID: 1429419435}
+  puppet: {fileID: 1267467579}
+  food: {fileID: 1429419434}
 --- !u!1 &1769604047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,6 +3727,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1315982909}
   - {fileID: 1816241782}
   - {fileID: 1345716403}
   - {fileID: 1267467574}
