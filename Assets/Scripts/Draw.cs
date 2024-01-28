@@ -50,7 +50,7 @@ public class Draw : BaseState
     protected override void Start()
     {
         Debug.Log("Draw Started");
-        lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
+        //lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
     }
     #endregion
 
@@ -102,7 +102,7 @@ public class Draw : BaseState
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //The ray to find the mouse world position
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, lm)) //Gets the mouse world position by finding where the ray collides with a plane
         {
-            mp = raycastHit.point; //Point where it hits
+            mp = raycastHit.point - handOffset; //Point where it hits
             mp.z = 0f; //Set the z coordinate to 0
         }
         return mp; //Return it
