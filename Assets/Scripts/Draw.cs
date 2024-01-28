@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,17 +20,22 @@ public class Draw : BaseState
     [SerializeField] private Transform handPos; //The hand game object to draw the line from
     [SerializeField] private Vector3 handOffset; //The offset of the hand game object from the world space
     [SerializeField] private float pointThreshold; //The minimum distance the mouse needs to be away from the last point on the line
-    [SerializeField] private Vector3 foodPos = new Vector3(6.76f, 3.22f, 0f); //Position of the food object
     [SerializeField] private bool canDraw = false; //Whether the player can start drawing
     [SerializeField] private bool drawing = false; //We are currently drawing
 
     [Header("Cursor")]
-    [SerializeField] private Vector3 mousePos;
+    [SerializeField] private Vector3 mousePos; //Position of the mouse in world space
     [SerializeField] private bool onFood = false; //We are over the food
     [SerializeField] private Texture2D pencil; //New cursor image
+
     [Header("Mouse Detections")]
     public DrawMouseDetect puppet; //Mouse detection script on the puppet object
     public DrawMouseDetect food;   //Mouse detection script on the food object
+
+    [Header("Audio")]
+    [SerializeField] private bool isScribbling = false; //Whether the scribbling sound is playing
+    [SerializeField] private bool isMusic = false; //Whether the background music is playing
+    [SerializeField] private float scribbleDur = 9f; //Duration of the scribbling sound
     #endregion
 
     #region Setup and Shutdown
@@ -39,6 +45,10 @@ public class Draw : BaseState
         Vector2 hotspot = new Vector2(0, pencil.height);
         Cursor.SetCursor(pencil, hotspot, CursorMode.Auto);
 
+        handOffset = handPos.position; //Automatically get the correct offset
+        lr.SetPosition(0, handPos.position - handOffset); //Set the first point's position to the current game objects position
+
+        AudioManager.Instance.StopSound();
     }
 
     private void OnDisable()
@@ -50,12 +60,15 @@ public class Draw : BaseState
     protected override void Start()
     {
         Debug.Log("Draw Started");
-        //lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
     }
     #endregion
 
     protected override void Update()
     {
+        
+        //AudioManager.Instance.PlayBackgroundMusic();
+        //isMusic = AudioManager.Instance.TestPlaying();
+
         mousePos = NewMousePos(); //Get the mouse position in world coordinates
 
         //Update local bool flags
@@ -68,7 +81,7 @@ public class Draw : BaseState
             {
                 drawing = true; //Good to start drawing
             }
-            else //Already drawing
+            else if (drawing) //Already drawing
             {
                 drawing = true;
             }
@@ -80,6 +93,22 @@ public class Draw : BaseState
 
         if (drawing) //Someone double check my logic please
         {
+            //Scribble sound played while drawing
+            if (!isScribbling)
+            {
+                AudioManager.Instance.PlayDrawingSound();
+                isScribbling = true;
+            }
+            else //Count down to next play
+            {
+                scribbleDur -= Time.deltaTime;
+                if (scribbleDur <= 0f)
+                {
+                    isScribbling = false;
+                    scribbleDur = 9f;
+                }
+            }
+
             NewPoint(); //Do line point stuff
 
             if (onFood) //We are over the food
