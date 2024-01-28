@@ -20,8 +20,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [Header("Sound FX")]
-    [SerializeField] private AudioClip drawingSound;
-    [SerializeField] private AudioClip stretchingSound;
+    [SerializeField] private AudioSource drawingSound;
+    [SerializeField] private AudioSource stretchingSound;
     [SerializeField] private AudioClip successSound;
     [SerializeField] private AudioClip failSound;
 
@@ -43,23 +43,22 @@ public class AudioManager : MonoBehaviour
         }  
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape)) { audioSource.PlayOneShot( stretchingSound); }
-         
-    }
 
     public void PlayDrawingSound()
     {
-        audioSource.PlayOneShot(drawingSound);
+        drawingSound.Play();
     }
 
-
+    public void StopDrawingSound() { drawingSound.Stop();}
     public void PlayStretchingSound()
     {
-        audioSource.PlayOneShot(stretchingSound);
+        stretchingSound.Play();
     }
 
+    public void StopStretchingSound()
+    {
+        stretchingSound.Stop();
+    }
     public void CrunchySaysGetMeCake()
     {
         audioSource.PlayOneShot(getMeCake);
