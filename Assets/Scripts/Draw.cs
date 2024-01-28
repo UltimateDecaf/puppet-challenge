@@ -25,7 +25,7 @@ public class Draw : BaseState
     [SerializeField] private bool drawing = false; //We are currently drawing
 
     [Header("Cursor")]
-    [SerializeField] private Vector3 mousePos;
+    [SerializeField] private Vector3 mousePos; //Position of the mouse in world space
     [SerializeField] private bool onFood = false; //We are over the food
     [SerializeField] private Texture2D pencil; //New cursor image
     [Header("Mouse Detections")]
@@ -33,8 +33,9 @@ public class Draw : BaseState
     public DrawMouseDetect food;   //Mouse detection script on the food object
 
     [Header("Audio")]
-    [SerializeField] private bool isScribbling = false;
-    [SerializeField] private bool isMusic = false;
+    [SerializeField] private bool isScribbling = false; //Whether the scribbling sound is playing
+    [SerializeField] private bool isMusic = false; //Whether the background music is playing
+    [SerializeField] private float scribbleDur = 9f; //Duration of the scribbling sound
     #endregion
 
     #region Setup and Shutdown
@@ -43,6 +44,8 @@ public class Draw : BaseState
         //Switch cursor to a pencil
         Vector2 hotspot = new Vector2(0, pencil.height);
         Cursor.SetCursor(pencil, hotspot, CursorMode.Auto);
+
+        lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
 
     }
 
@@ -55,14 +58,14 @@ public class Draw : BaseState
     protected override void Start()
     {
         Debug.Log("Draw Started");
-        //lr.SetPosition(0, handPos.position); //Set the first point's position to the current game objects position
     }
     #endregion
 
     protected override void Update()
     {
+        
         //AudioManager.Instance.PlayBackgroundMusic();
-        isMusic = AudioManager.Instance.TestPlaying();
+        //isMusic = AudioManager.Instance.TestPlaying();
 
         mousePos = NewMousePos(); //Get the mouse position in world coordinates
 
@@ -88,10 +91,20 @@ public class Draw : BaseState
 
         if (drawing) //Someone double check my logic please
         {
-            isScribbling = AudioManager.Instance.TestPlaying();
+            //Scribble sound played while drawing
             if (!isScribbling)
             {
                 AudioManager.Instance.PlayDrawingSound();
+                isScribbling = true;
+            }
+            else //Count down to next play
+            {
+                scribbleDur -= Time.deltaTime;
+                if (scribbleDur <= 0f)
+                {
+                    isScribbling = false;
+                    scribbleDur = 9f;
+                }
             }
 
             NewPoint(); //Do line point stuff
