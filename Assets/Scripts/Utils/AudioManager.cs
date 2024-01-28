@@ -18,8 +18,19 @@ public class AudioManager : MonoBehaviour
     // 4. Reference it in the appropriate section of the state script
     public static AudioManager Instance { get; private set; }
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip drawingSound;
-    [SerializeField] private AudioClip stretchingSound;
+
+    [Header("Sound FX")]
+    [SerializeField] private AudioSource drawingSound;
+    [SerializeField] private AudioSource stretchingSound;
+    [SerializeField] private AudioClip successSound;
+    [SerializeField] private AudioClip failSound;
+
+    [Header("Crunchy's Soundbites")]
+    [SerializeField] private AudioClip getMeCake;
+    [SerializeField] private AudioClip OkayYes;
+    [SerializeField] private AudioClip Reaching;
+    [SerializeField] private AudioClip Slapped;
+    [SerializeField] private AudioClip Success;
     private void Start()
     {
         if (Instance != null && Instance != this)
@@ -33,14 +44,40 @@ public class AudioManager : MonoBehaviour
     }
 
 
-   
     public void PlayDrawingSound()
     {
-        audioSource.PlayOneShot(drawingSound);
+        drawingSound.Play();
     }
 
-    public void StopSound()
+    public void StopDrawingSound() { drawingSound.Stop();}
+    public void PlayStretchingSound()
     {
-        audioSource.Stop();
+        stretchingSound.Play();
+    }
+
+    public void StopStretchingSound()
+    {
+        stretchingSound.Stop();
+    }
+    public void CrunchySaysGetMeCake()
+    {
+        audioSource.PlayOneShot(getMeCake);
+    }
+
+    public void CrunchySaysOkayYes()
+    {
+        audioSource.PlayOneShot(OkayYes);
+    }
+
+    public void CrunchySaysReaching() {  audioSource.PlayOneShot(Reaching);}
+
+    public void CrunchySaysSlapped()
+    {
+        audioSource.PlayOneShot(Slapped);
+    }
+
+    public void CrunchySaysSuccess()
+    {
+        audioSource.PlayOneShot(Success);
     }
 }
