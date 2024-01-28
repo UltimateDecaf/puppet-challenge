@@ -10,9 +10,8 @@ public class Hand : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Maze"))
-        {
-            Debug.Log("Fail State Entered");
-           // Fail State
+        { 
+            // Fail State
            
            OnHandCollision?.Invoke();
            StateManager.Instance.UpdateGameState(StateManager.Instance.SlapState);

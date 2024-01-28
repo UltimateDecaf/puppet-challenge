@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cake
   - Line
+  - Arm
   layers:
   - Default
   - TransparentFX

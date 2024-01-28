@@ -35,7 +35,6 @@ public class Reach : BaseState
     protected override void Update()
     {
        
-        
     }
 
     [Header("Spline Params")]
@@ -113,7 +112,6 @@ public class Reach : BaseState
     private void StopExtrusion()
     {
         extruding = false;
-        extruder.enabled = false;
     }
     
 
