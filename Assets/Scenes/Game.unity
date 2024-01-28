@@ -651,12 +651,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370786141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.11, y: -3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1267467574}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &370786143
 LineRenderer:
@@ -758,7 +758,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!135 &370786144
@@ -2305,7 +2305,6 @@ Transform:
   m_Children:
   - {fileID: 1124114178}
   - {fileID: 1745791663}
-  - {fileID: 370786142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1267467578
@@ -3193,10 +3192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584a11126f137e0498e2f7cc7a664ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 370786141}
+  hand: {fileID: 2293551632286283985, guid: 3162eb73dce78f0479467e4b71757029, type: 3}
   moveSpeed: 2
   fastSpeed: 5
-  splinePrefab: {fileID: 0}
+  splinePrefab: {fileID: 1120618716288161050, guid: 8b4da52b71811f944acf4336ea0ae95e, type: 3}
   duration: 0
   extruding: 1
   mode: 0
@@ -3260,7 +3259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1544988980
 Transform:
   m_ObjectHideFlags: 0
@@ -3765,7 +3764,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   handPos: {fileID: 370786142}
-  handOffset: {x: -5.1, y: -3.14, z: 0}
+  handOffset: {x: -5.11, y: -3.14, z: 0}
   pointThreshold: 0.5
   foodPos: {x: 6.76, y: 3.22, z: 0}
   canDraw: 0
@@ -5159,6 +5158,7 @@ SceneRoots:
   - {fileID: 1315982909}
   - {fileID: 1816241782}
   - {fileID: 1345716403}
+  - {fileID: 370786142}
   - {fileID: 1267467574}
   - {fileID: 1834277944}
   - {fileID: 143064805}
