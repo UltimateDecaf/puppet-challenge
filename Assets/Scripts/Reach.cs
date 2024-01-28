@@ -15,39 +15,35 @@ public class Reach : BaseState
     public float moveSpeed;
     public float fastSpeed;
     
-    [Header("Line")]
     private LineRenderer line;
     
     // Start is called before the first frame update
    private void OnEnable()
     {
         Debug.Log("Reach started");
-        hand.SetActive(true);
 
         line = GameObject.FindGameObjectWithTag("Line").GetComponent<LineRenderer>();
         line.enabled = false;
         GenerateSpline(line);
+        
+        // Hand OnCollision
+        Hand.OnHandCollision += StopAnimation;
+        Hand.OnHandCollision += StopExtrusion;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        // Move the hand at normal speed along the spline
-        if (vertices.Length != 0)
-        {
-            //UpdateHandTransform(splineInstance.GetComponent<SplineContainer>().Spline.Knots.ToList());
-        }
+       
         
     }
 
-    [Header("Spline")]
+    [Header("Spline Params")]
     public GameObject splinePrefab;
-    public TangentMode mode;
     public float duration;
-    public Bounds extrudeBounds;
-    public Vector3[] vertices;
-    public Vector3 targetPosition;
-    
+    public bool extruding = true;
+    public TangentMode mode;
+
     private void GenerateSpline(LineRenderer line)
     {
        // Get the points from the line renderer'
@@ -70,12 +66,15 @@ public class Reach : BaseState
        splineContainer.Spline.SetTangentMode(mode);
        
        //Extrude Mesh
-       SplineExtrude extruder = prefab.GetComponent<SplineExtrude>();
+       extruder = prefab.GetComponent<SplineExtrude>();
        StartCoroutine(ExtrudeArm(extruder));
        
        //Animate Hand Motion
        AnimateHand(splineContainer);
     }
+
+    private SplineExtrude extruder;
+    private float lerpVal;
 
     IEnumerator ExtrudeArm(SplineExtrude extruder)
     {
@@ -85,7 +84,7 @@ public class Reach : BaseState
 
         float lerpValue;
         
-        while (timeElapsed < duration)
+        while (timeElapsed < duration && extruding)
         {
             lerpValue = Mathf.Lerp(from, to, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
@@ -96,18 +95,31 @@ public class Reach : BaseState
         extruder.Range = new Vector2(0, 1);
     }
 
+    private SplineAnimate handAnim;
+
     public void AnimateHand(SplineContainer container)
     {
-        SplineAnimate anim = hand.GetComponent<SplineAnimate>();
-        anim.Container = container;
-        anim.Duration = duration;
-        anim.Play();
+        handAnim = hand.GetComponent<SplineAnimate>();
+        handAnim.Container = container;
+        handAnim.Duration = duration;
+        handAnim.Play();
+    }
+
+    private void StopAnimation()
+    {
+        handAnim.Pause();
+    }
+
+    private void StopExtrusion()
+    {
+        extruding = false;
+        extruder.enabled = false;
     }
     
 
     private void OnDisable()
     {
-        hand.SetActive(false);
+        Hand.OnHandCollision -= StopAnimation;
+        Hand.OnHandCollision -= StopExtrusion;
     }
-    
 }
