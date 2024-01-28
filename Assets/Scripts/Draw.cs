@@ -41,14 +41,12 @@ public class Draw : BaseState
     #region Setup and Shutdown
     private void OnEnable()
     {
+        AudioManager.Instance.CrunchySaysGetMeCake();
         //Switch cursor to a pencil
         Vector2 hotspot = new Vector2(0, pencil.height);
         Cursor.SetCursor(pencil, hotspot, CursorMode.Auto);
-
-        handOffset = handPos.position; //Automatically get the correct offset
-        lr.SetPosition(0, handPos.position - handOffset); //Set the first point's position to the current game objects position
-
-        AudioManager.Instance.StopSound();
+        AudioManager.Instance.PlayDrawingSound();
+        handOffset = handPos.position;
     }
 
     private void OnDisable()
@@ -66,9 +64,6 @@ public class Draw : BaseState
     protected override void Update()
     {
         
-        //AudioManager.Instance.PlayBackgroundMusic();
-        //isMusic = AudioManager.Instance.TestPlaying();
-
         mousePos = NewMousePos(); //Get the mouse position in world coordinates
 
         //Update local bool flags
@@ -80,6 +75,7 @@ public class Draw : BaseState
             if (canDraw) //Mouse Over
             {
                 drawing = true; //Good to start drawing
+                
             }
             else if (drawing) //Already drawing
             {
@@ -113,6 +109,7 @@ public class Draw : BaseState
 
             if (onFood) //We are over the food
             {
+                AudioManager.Instance.StopDrawingSound();
                 Debug.Log("Switch to Reach state");
                 StateManager.Instance.UpdateGameState(StateManager.Instance.ReachState); //Switch to Reach state
             }
