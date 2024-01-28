@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Unity.PlasticSCM.Editor.WebApi.CredentialsResponse;
 
+//NOTE: Grab state is ignored for now!
 
 /* Created by...
  * 
