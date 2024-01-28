@@ -18,6 +18,7 @@ public class StateManager : MonoBehaviour
     [SerializeField] public GameObject DrawState;
     [SerializeField] public GameObject ReachState;
    // [SerializeField] public GameObject GrabState; // Grab Phase is ignored for now! - Lari
+    [SerializeField] public GameObject RetractState;
     [SerializeField] public GameObject SlapState;
     [SerializeField] public GameObject WinState;
 
