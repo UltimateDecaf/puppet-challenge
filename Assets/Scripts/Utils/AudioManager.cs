@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource stretchingSound;
     [SerializeField] private AudioClip successSound;
     [SerializeField] private AudioClip failSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip slapSound;
 
     [Header("Crunchy's Soundbites")]
     [SerializeField] private AudioClip getMeCake;
@@ -59,6 +61,16 @@ public class AudioManager : MonoBehaviour
     public void StopStretchingSound()
     {
         stretchingSound.Stop();
+    }
+
+    public void PlayHitSound()
+    {
+        audioSource.PlayOneShot(hitSound);
+    }
+
+    public void PlaySlapSound()
+    {
+        audioSource.PlayOneShot(slapSound);
     }
     public void CrunchySaysGetMeCake()
     {

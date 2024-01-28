@@ -18,6 +18,8 @@ public class Retract : BaseState
 
     private void OnEnable()
     {
+        AudioManager.Instance.CrunchySaysOhNo();
+        AudioManager.Instance.CrunchySaysOhNo();
         Debug.Log("Retract Start");
         cameraSwitcher.ActivateSlapWinCamera();
         
@@ -27,7 +29,6 @@ public class Retract : BaseState
         handAnim.StopAllCoroutines();
         handAnim.Duration = duration;
         StartCoroutine(RetractHand());
-        
         //Retract Arm
         arm = GameObject.FindWithTag("Arm").GetComponent<SplineExtrude>();
         arm.StopAllCoroutines();

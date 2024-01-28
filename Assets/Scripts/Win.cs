@@ -8,6 +8,7 @@ public class Win : BaseState
     [SerializeField] private CameraSwitcher cameraSwitcher;
     private void OnEnable() 
     {
+        AudioManager.Instance.CrunchySaysSuccess();
         cameraSwitcher.ActivateSlapWinCamera();
         Debug.Log("WIN STATE ENTERED");
     }
