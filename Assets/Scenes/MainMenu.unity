@@ -153,11 +153,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 721197674}
+  m_Father: {fileID: 669539261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 180}
+  m_AnchoredPosition: {x: -643, y: -180}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &98944887
@@ -579,11 +579,11 @@ RectTransform:
   m_LocalScale: {x: 0.8116282, y: 0.8116282, z: 0.8116282}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 721197674}
+  m_Father: {fileID: 669539261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 200}
+  m_AnchoredPosition: {x: -340, y: -160}
   m_SizeDelta: {x: 1205.7283, y: 191.7668}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &617403231
@@ -1433,6 +1433,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &669539260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669539261}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &669539261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669539260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 98944886}
+  - {fileID: 617403230}
+  - {fileID: 1835332894}
+  m_Father: {fileID: 1694414147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 614, y: 328}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &902866456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2893,7 @@ RectTransform:
   - {fileID: 1455225821}
   - {fileID: 1304458252}
   - {fileID: 1783511576}
-  - {fileID: 721197674}
+  - {fileID: 669539261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3013,8 +3051,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Jacques Visser - Designer, Programmer\nLari Basangov - Level Designer,
-    Audio Engineering \nHaydi Khorshed - Artist\nJan Willem Goedvolk - Programmer\nLeon
-    Colaco - Programmer"
+    Audio Engineering \nHaydi Khorshed - Character Artist\nJan Willem Goedvolk -
+    Programmer\nLeon Colaco - Programmer"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12ee6dd140840a54a889adfacd0e09f9, type: 2}
   m_sharedMaterial: {fileID: -3618204881059669060, guid: 12ee6dd140840a54a889adfacd0e09f9, type: 2}
@@ -3159,11 +3197,11 @@ RectTransform:
   m_LocalScale: {x: 2.2522783, y: 2.2522783, z: 2.2522783}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 721197674}
+  m_Father: {fileID: 669539261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 205, y: 149}
+  m_AnchoredPosition: {x: -435, y: -211}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835332895
