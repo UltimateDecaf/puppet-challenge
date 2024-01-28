@@ -5,9 +5,8 @@ using Cinemachine;
 using static UnityEditor.SceneView;
 
 
-/* This script handles switching and transitioning from different Cinemachine Virtual cameras.
- *
- */
+// This script handles switching and transitioning from different Cinemachine Virtual cameras.
+
 public class CameraSwitcher: MonoBehaviour
 {
     public CinemachineVirtualCamera DrawReachCamera;
@@ -19,9 +18,9 @@ public class CameraSwitcher: MonoBehaviour
 
     public void ActivateDrawReachCamera()
     {
-        DrawReachCamera.Priority = maxPriority;
+        DrawReachCamera.gameObject.SetActive(true);
   //      GrabCamera.Priority = noPriority;
-        SlapWinCamera.Priority = noPriority;
+        SlapWinCamera.gameObject.SetActive(false);
     }
 
     public void ActivateGrabCamera()
@@ -33,9 +32,9 @@ public class CameraSwitcher: MonoBehaviour
 
     public void ActivateSlapWinCamera()
     {
-        DrawReachCamera.Priority = noPriority;
+        DrawReachCamera.gameObject.SetActive(false);
     //    GrabCamera.Priority = noPriority;
-        SlapWinCamera.Priority = maxPriority;
+        SlapWinCamera.gameObject.SetActive(true);
     }
 
 

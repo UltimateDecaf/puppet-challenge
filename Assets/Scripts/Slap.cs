@@ -1,75 +1,92 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Splines;
 
 public class Slap : BaseState
 {
-    [Header("References")]
-    [SerializeField] private CameraSwitcher cameraSwitcher;
+   public Quaternion targetRotation;
+   public Vector3 targetPosition;
 
-    [Header("Spline")] 
-    public SplineExtrude arm;
-    public SplineAnimate handAnim;
-    
-    [Header("Slap Animation")]
-    public float duration;
+   [FormerlySerializedAs("duartion")] public float duration;
 
-    private void OnEnable()
-    {
-        Debug.Log("SLAP STATE STARTED!");
-        cameraSwitcher.ActivateDrawReachCamera();
-        
-        //TODO: Add Screenshake FX
-        
-        //Retract Hand
-        handAnim.StopAllCoroutines();
-        handAnim.Duration = duration;
-        StartCoroutine(RetractHand());
-        
-        //Retract Arm
-        arm = GameObject.FindWithTag("Arm").GetComponent<SplineExtrude>();
-        arm.StopAllCoroutines();
-        StartCoroutine(RetractArm(arm.Range.y));
-    }
+   public GameObject angryModel;
+   public GameObject neutralModel;
 
-    protected override void Update()
-    {
+   public GameObject slapHand;
+   public GameObject reachHand;
+   private Vector3 startHandPos;
+   private Quaternion startHandRot;
 
-    }
+   public SplineExtrude slapArm;
 
-    IEnumerator RetractHand()
-    {
-        float elapsed = 0f;
-        
-        while (elapsed < duration)
-        {
-            handAnim.ElapsedTime = Mathf.Lerp(handAnim.ElapsedTime, 0, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        handAnim.ElapsedTime = 0f;
-    }
+   public static event Action OnSlap;
+   
+   [Header("References")]
+   [SerializeField] private CameraSwitcher cameraSwitcher;
 
-    IEnumerator RetractArm(float from)
-    {
-        float elapsed = 0f;
-        float lerpValue;
+   private void OnEnable()
+   {
+      startHandPos = reachHand.transform.position;
+      startHandRot = reachHand.transform.rotation;
+      
+      targetPosition = slapHand.transform.position;
+      targetRotation = slapHand.transform.localRotation;
+      
+      // Slap Sequence
+      StartCoroutine("SlapSequence");
+   }
 
-        while (elapsed < duration)
-        {
-            arm.Rebuild();
-            lerpValue = Mathf.Lerp(from, 0, elapsed * 7 / duration);
-            arm.Range = new Vector2(0, lerpValue);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        arm.Range = Vector2.zero;
-    }
+   protected override void Update()
+   {
+      
+   }
 
-    private void OnDisable()
-    {
-        
-    }
+   public IEnumerator SlapSequence()
+   {
+      float elapsed = 0f;
+      float armValue = 0f;
+
+      while (elapsed < duration)
+      {
+         // Lerp Position
+         reachHand.transform.position = Vector3.Lerp(reachHand.transform.position, targetPosition, elapsed / duration);
+         
+         // Lerp Rotation - This is broken but is way funnier
+         Vector3 rot = Vector3.Lerp(reachHand.transform.rotation.eulerAngles, targetRotation.eulerAngles, elapsed / duration);
+         reachHand.transform.rotation = quaternion.Euler(rot.x, rot.y, rot.y);
+         
+         // Extrude Slap Arm
+         slapArm.Rebuild();
+         armValue = Mathf.Lerp(0, 1, elapsed / duration);
+         slapArm.Range = new Vector2(0, armValue);
+
+         elapsed += Time.deltaTime;
+         yield return null;
+      }
+      OnSlap?.Invoke();
+      neutralModel.SetActive(false);
+      angryModel.SetActive(true);
+
+      yield return new WaitForSeconds(4f);
+      StateManager.Instance.UpdateGameState(StateManager.Instance.DrawState);
+      ResetHandPosition();
+      cameraSwitcher.ActivateDrawReachCamera();
+   }
+
+   void ResetHandPosition()
+   {
+      reachHand.transform.position = startHandPos;
+      reachHand.transform.rotation = startHandRot;
+   }
+
+   private void OnDisable()
+   {
+      angryModel.SetActive(false);
+      neutralModel.SetActive(true);
+      slapArm.gameObject.SetActive(false);
+   }
 }
