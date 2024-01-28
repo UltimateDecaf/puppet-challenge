@@ -22,6 +22,7 @@ public class Reach : BaseState
     {
         Debug.Log("Reach started");
 
+        AudioManager.Instance.PlayStretchingSound();
         line = GameObject.FindGameObjectWithTag("Line").GetComponent<LineRenderer>();
         line.enabled = false;
         GenerateSpline(line);
@@ -117,6 +118,7 @@ public class Reach : BaseState
 
     private void OnDisable()
     {
+        AudioManager.Instance.StopStretchingSound();
         Hand.OnHandCollision -= StopAnimation;
         Hand.OnHandCollision -= StopExtrusion;
     }
