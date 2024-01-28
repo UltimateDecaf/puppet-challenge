@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,10 @@ public class Draw : BaseState
     [Header("Mouse Detections")]
     public DrawMouseDetect puppet; //Mouse detection script on the puppet object
     public DrawMouseDetect food;   //Mouse detection script on the food object
+
+    [Header("Audio")]
+    [SerializeField] private bool isScribbling = false;
+    [SerializeField] private bool isMusic = false;
     #endregion
 
     #region Setup and Shutdown
@@ -56,6 +61,9 @@ public class Draw : BaseState
 
     protected override void Update()
     {
+        //AudioManager.Instance.PlayBackgroundMusic();
+        isMusic = AudioManager.Instance.TestPlaying();
+
         mousePos = NewMousePos(); //Get the mouse position in world coordinates
 
         //Update local bool flags
@@ -68,7 +76,7 @@ public class Draw : BaseState
             {
                 drawing = true; //Good to start drawing
             }
-            else //Already drawing
+            else if (drawing) //Already drawing
             {
                 drawing = true;
             }
@@ -80,6 +88,12 @@ public class Draw : BaseState
 
         if (drawing) //Someone double check my logic please
         {
+            isScribbling = AudioManager.Instance.TestPlaying();
+            if (!isScribbling)
+            {
+                AudioManager.Instance.PlayDrawingSound();
+            }
+
             NewPoint(); //Do line point stuff
 
             if (onFood) //We are over the food

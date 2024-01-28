@@ -34,11 +34,16 @@ public class AudioManager : MonoBehaviour
         }  
     }
 
+    public bool TestPlaying()
+    {
+        return audioSource.isPlaying;
+    }
+
     public void PlayTestSound() 
     {
         audioSource.PlayOneShot(testMusic);
     }
-   
+
     public void PlayDrawingSound()
     {
         audioSource.PlayOneShot(drawingSound);
@@ -46,6 +51,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
+        bool isPlaying = audioSource.isPlaying;
+        if (!isPlaying)
+        {
+            audioSource.PlayOneShot(testMusic);
+        }
     }
 
 }
