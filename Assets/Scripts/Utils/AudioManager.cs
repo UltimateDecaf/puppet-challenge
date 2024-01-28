@@ -18,10 +18,8 @@ public class AudioManager : MonoBehaviour
     // 4. Reference it in the appropriate section of the state script
     public static AudioManager Instance { get; private set; }
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip testMusic;
-    [SerializeField] private AudioClip testSuccessMusic;
     [SerializeField] private AudioClip drawingSound;
-
+    [SerializeField] private AudioClip stretchingSound;
     private void Start()
     {
         if (Instance != null && Instance != this)
@@ -34,28 +32,12 @@ public class AudioManager : MonoBehaviour
         }  
     }
 
-    public bool TestPlaying()
-    {
-        return audioSource.isPlaying;
-    }
 
-    public void PlayTestSound() 
-    {
-        audioSource.PlayOneShot(testMusic);
-    }
-
+   
     public void PlayDrawingSound()
     {
         audioSource.PlayOneShot(drawingSound);
     }
 
-    public void PlayBackgroundMusic()
-    {
-        bool isPlaying = audioSource.isPlaying;
-        if (!isPlaying)
-        {
-            audioSource.PlayOneShot(testMusic);
-        }
-    }
 
 }
