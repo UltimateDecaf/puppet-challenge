@@ -12,9 +12,8 @@ public class Hand : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Maze"))
         { 
             // Fail State
-           
-           OnHandCollision?.Invoke();
-           StateManager.Instance.UpdateGameState(StateManager.Instance.SlapState);
+            OnHandCollision?.Invoke();
+           StateManager.Instance.UpdateGameState(StateManager.Instance.RetractState);
         }
     }
 }
