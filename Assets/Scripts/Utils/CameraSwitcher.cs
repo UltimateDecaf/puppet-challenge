@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using static UnityEditor.SceneView;
 
 
 // This script handles switching and transitioning from different Cinemachine Virtual cameras.

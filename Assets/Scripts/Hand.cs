@@ -14,6 +14,9 @@ public class Hand : MonoBehaviour
             // Fail State
             OnHandCollision?.Invoke();
            StateManager.Instance.UpdateGameState(StateManager.Instance.RetractState);
+        } else if (other.gameObject.layer == LayerMask.NameToLayer("Cake"))
+        {
+            StateManager.Instance.UpdateGameState(StateManager.Instance.WinState);
         }
     }
 }
